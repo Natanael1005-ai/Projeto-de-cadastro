@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "VJ+poCcxK/o=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\2008n\\SistemaUsuarios\\SistemaUsuarios.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\2008n\\.nuget\\packages\\firebirdsql.data.firebirdclient\\10.3.4\\firebirdsql.data.firebirdclient.10.3.4.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "message": "Ocorreu um erro ao obter os dados de vulnerabilidade do pacote: Não é possível carregar o índice de serviço para a origem https://api.nuget.org/v3/index.json.",
+      "projectPath": "C:\\Users\\2008n\\SistemaUsuarios\\SistemaUsuarios.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\2008n\\SistemaUsuarios\\SistemaUsuarios.csproj",
+      "targetGraphs": []
+    }
+  ]
+}
