@@ -98,6 +98,62 @@ namespace SistemaUsuarios
 
             CarregarUsuarios();
         }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (dgvUsuarios.CurrentRow == null)
+            {
+                MessageBox.Show(
+                    "Selecione um usuário para excluir.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                return;
+            }
+
+            int id = Convert.ToInt32(
+                dgvUsuarios.CurrentRow.Cells["ID"].Value
+            );
+
+            string nome = dgvUsuarios.CurrentRow.Cells["NOME"].Value.ToString();
+            string login = dgvUsuarios.CurrentRow.Cells["LOGIN"].Value.ToString();
+
+            DialogResult resultado = MessageBox.Show(
+                $"Deseja realmente excluir o usuário \"{nome}\" (login: {login})?",
+                "Confirmar exclusão",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (resultado != DialogResult.Yes)
+                return;
+
+            try
+            {
+                UsuarioDAO dao = new UsuarioDAO();
+                dao.ExcluirUsuario(id);
+
+                MessageBox.Show(
+                    "Usuário excluído com sucesso!",
+                    "Sucesso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+
+                CarregarUsuarios();
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show(
+                    "Erro ao excluir usuário:\n\n" + erro.Message,
+                    "Erro",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+        }
     }
 
 }

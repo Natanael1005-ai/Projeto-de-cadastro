@@ -127,5 +127,24 @@ public class UsuarioDAO
             }
         }
     }
+    public void ExcluirUsuario(int id)
+    {
+        using (FbConnection conexao = Conexao.CriarConexao())
+        {
+            conexao.Open();
+
+            string sql = @"
+            DELETE FROM USUARIOS
+            WHERE ID = @ID
+        ";
+
+            using (FbCommand comando = new FbCommand(sql, conexao))
+            {
+                comando.Parameters.AddWithValue("@ID", id);
+
+                comando.ExecuteNonQuery();
+            }
+        }
+    }
 }
 
