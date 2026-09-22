@@ -100,7 +100,7 @@ public class UsuarioDAO
             }
         }
     }
-    public void AtualizarUsuario(Usuario usuario)
+    public void AtualizaPerfil(Usuario usuario)
     {
         using (FbConnection conexao = Conexao.CriarConexao())
         {

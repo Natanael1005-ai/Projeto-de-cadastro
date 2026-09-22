@@ -5,14 +5,14 @@ namespace SistemaUsuarios
 {
     public partial class FormCadastro : Form
     {
-        FormAdmin admin = null;
-        private Usuario? usuarioEditando;
+        private readonly FormAdmin? admin;
+        private readonly Usuario? usuarioEditando;
 
         // Construtor para CADASTRO
         public FormCadastro(FormAdmin admin)
         {
-            this.admin = admin;
             InitializeComponent();
+            this.admin = admin;
         }
 
         // Construtor para EDIÇÃO
@@ -28,24 +28,72 @@ namespace SistemaUsuarios
             cmbTipo.Text = usuario.Tipo;
         }
 
-        // BOTÃO SALVAR
-        private void btnSalvar_Click(object sender, EventArgs e)
+        // Validação dos campos
+        private bool CamposValidos()
         {
+            if (string.IsNullOrWhiteSpace(txtNome.Text))
+            {
+                MessageBox.Show("Digite o nome.");
+                txtNome.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtLogin.Text))
+            {
+                MessageBox.Show("Digite o login.");
+                txtLogin.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtSenha.Text))
+            {
+                MessageBox.Show("Digite a senha.");
+                txtSenha.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(cmbTipo.Text))
+            {
+                MessageBox.Show("Selecione o tipo de usuário.");
+                cmbTipo.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        // BOTÃO SALVAR
+        private void btnSalvar_Click(object? sender, EventArgs e)
+        {
+            if (!CamposValidos())
+                return;
+
             try
             {
                 UsuarioDAO dao = new UsuarioDAO();
 
-                // ============================
-                // EDIÇÃO
-                // ============================
                 if (usuarioEditando != null)
                 {
-                    usuarioEditando.Nome = txtNome.Text;
-                    usuarioEditando.Login = txtLogin.Text;
-                    usuarioEditando.Senha = txtSenha.Text;
-                    usuarioEditando.Tipo = cmbTipo.Text;
+                    // ============================
+                    // EDIÇÃO
+                    // ============================
+                    // Usa uma cópia para só alterar o objeto original
+                    // depois que o banco confirmar a gravação
+                    Usuario atualizado = new Usuario
+                    {
+                        Id = usuarioEditando.Id,
+                        Nome = txtNome.Text.Trim(),
+                        Login = txtLogin.Text.Trim(),
+                        Senha = txtSenha.Text,
+                        Tipo = cmbTipo.Text
+                    };
 
-                    dao.AtualizarUsuario(usuarioEditando);
+                    dao.AtualizaPerfil(atualizado);
+
+                    usuarioEditando.Nome = atualizado.Nome;
+                    usuarioEditando.Login = atualizado.Login;
+                    usuarioEditando.Senha = atualizado.Senha;
+                    usuarioEditando.Tipo = atualizado.Tipo;
 
                     MessageBox.Show(
                         "Usuário atualizado com sucesso!",
@@ -61,8 +109,8 @@ namespace SistemaUsuarios
                     // ============================
                     Usuario novoUsuario = new Usuario
                     {
-                        Nome = txtNome.Text,
-                        Login = txtLogin.Text,
+                        Nome = txtNome.Text.Trim(),
+                        Login = txtLogin.Text.Trim(),
                         Senha = txtSenha.Text,
                         Tipo = cmbTipo.Text
                     };
@@ -92,7 +140,7 @@ namespace SistemaUsuarios
         }
 
         // BOTÃO CANCELAR
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object? sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(
                 "Deseja cancelar esta operação?",
@@ -108,7 +156,7 @@ namespace SistemaUsuarios
         }
 
         // BOTÃO ENTRAR
-        private void btnEntrar_Click(object sender, EventArgs e)
+        private void btnEntrar_Click(object? sender, EventArgs e)
         {
             Form1 form = new Form1();
             form.Show();
@@ -116,9 +164,8 @@ namespace SistemaUsuarios
         }
 
         // CARREGAMENTO DO FORMULÁRIO
-        private void FormCadastro_Load(object sender, EventArgs e)
+        private void FormCadastro_Load(object? sender, EventArgs e)
         {
-
         }
     }
 }

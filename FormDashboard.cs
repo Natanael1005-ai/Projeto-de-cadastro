@@ -24,16 +24,14 @@ namespace SistemaUsuarios
         // ==========================
         private void btnPerfil_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(
-                "DADOS DO USUÁRIO\n\n" +
-                "Nome: " + usuario.Nome + "\n" +
-                "Login: " + usuario.Login + "\n" +
-                "Tipo: " + usuario.Tipo,
+            using (FormPerfil perfil = new FormPerfil(this.usuario))
+            {
+                perfil.ShowDialog();
+            }
+          
 
-                "Meu Perfil",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information
-            );
+            lblBemVindo.Text = "Bem-vindo, " + usuario.Nome + "!";
+            lblTipo.Text = "Tipo de usuário: " + usuario.Tipo;
         }
 
         // ==========================
@@ -57,5 +55,11 @@ namespace SistemaUsuarios
                 this.Hide();
             }
         }
+
+        private void FormDashboard_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
