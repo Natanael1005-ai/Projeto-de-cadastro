@@ -8,9 +8,14 @@ namespace SistemaUsuarios
         public Form1()
         {
             InitializeComponent();
+          
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
 
-        private void btnEntrar_Click(object sender, EventArgs e)
+        private void btnEntrar_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -83,9 +88,10 @@ namespace SistemaUsuarios
                     MessageBoxIcon.Error
                 );
             }
+
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

@@ -1,10 +1,12 @@
 using System;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace SistemaUsuarios
 {
     public partial class FormCadastro : Form
     {
+        
         private readonly FormAdmin? admin;
         private readonly Usuario? usuarioEditando;
 
@@ -13,7 +15,7 @@ namespace SistemaUsuarios
         {
             InitializeComponent();
             this.admin = admin;
-        }
+                }
 
         // Construtor para EDIÇÃO
         public FormCadastro(Usuario usuario)
@@ -157,10 +159,21 @@ namespace SistemaUsuarios
 
         // BOTÃO ENTRAR
         private void btnEntrar_Click(object? sender, EventArgs e)
-        {
+        {// 1. Cria e mostra a nova janela
             Form1 form = new Form1();
             form.Show();
-            this.Close();
+
+            // 2. Fecha todas as janelas anteriores
+            for (int i = Application.OpenForms.Count - 1; i >= 0; i--)
+            {
+                var janela = Application.OpenForms[i];
+
+                // Garante que não vai fechar a janela que acabou de abrir
+                if (janela != form)
+                {
+                    janela.Close();
+                }
+            }
         }
 
         // CARREGAMENTO DO FORMULÁRIO

@@ -16,5 +16,8 @@
     <Compile Update="FormCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UcMeusDados.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

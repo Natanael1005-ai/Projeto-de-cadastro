@@ -146,5 +146,9 @@ public class UsuarioDAO
             }
         }
     }
+    public void CancelarOperação()
+    {
+
+    }
 }
 

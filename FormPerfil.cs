@@ -19,6 +19,9 @@ namespace SistemaUsuarios
             txtNome.Text = usuario.Nome;
             txtLogin.Text = usuario.Login;
             lblTipo.Text = usuario.Tipo;
+
+            // Aba "Meus Dados": dashboard do usuario logado
+            tabDados.Controls.Add(new UcMeusDados(usuario.Id));
         }
 
         private void bntSalvar_Click(object? sender, EventArgs e)
@@ -88,6 +91,9 @@ namespace SistemaUsuarios
 
         private void InitializeComponent()
         {
+            tabControl = new TabControl();
+            tabPerfil = new TabPage();
+            tabDados = new TabPage();
             lblTitulo = new Label();
             labelNome = new Label();
             txtNome = new TextBox();
@@ -99,7 +105,40 @@ namespace SistemaUsuarios
             lblTipo = new Label();
             bntSalvar = new Button();
             bntCancelar = new Button();
+            tabControl.SuspendLayout();
+            tabPerfil.SuspendLayout();
             SuspendLayout();
+            // 
+            // tabControl
+            // 
+            tabControl.Controls.Add(tabPerfil);
+            tabControl.Controls.Add(tabDados);
+            tabControl.Dock = DockStyle.Fill;
+            tabControl.Name = "tabControl";
+            tabControl.TabIndex = 0;
+            // 
+            // tabPerfil
+            // 
+            tabPerfil.Controls.Add(bntCancelar);
+            tabPerfil.Controls.Add(bntSalvar);
+            tabPerfil.Controls.Add(lblTipo);
+            tabPerfil.Controls.Add(labelTipo);
+            tabPerfil.Controls.Add(labelSenha);
+            tabPerfil.Controls.Add(txtSenha);
+            tabPerfil.Controls.Add(txtLogin);
+            tabPerfil.Controls.Add(labelLogin);
+            tabPerfil.Controls.Add(txtNome);
+            tabPerfil.Controls.Add(labelNome);
+            tabPerfil.Controls.Add(lblTitulo);
+            tabPerfil.Name = "tabPerfil";
+            tabPerfil.Text = "Meu Perfil";
+            tabPerfil.UseVisualStyleBackColor = true;
+            // 
+            // tabDados
+            // 
+            tabDados.Name = "tabDados";
+            tabDados.Text = "Meus Dados";
+            tabDados.UseVisualStyleBackColor = true;
             // 
             // lblTitulo
             // 
@@ -199,25 +238,20 @@ namespace SistemaUsuarios
             // FormPerfil
             // 
             ClientSize = new Size(1373, 648);
-            Controls.Add(bntCancelar);
-            Controls.Add(bntSalvar);
-            Controls.Add(lblTipo);
-            Controls.Add(labelTipo);
-            Controls.Add(labelSenha);
-            Controls.Add(txtSenha);
-            Controls.Add(txtLogin);
-            Controls.Add(labelLogin);
-            Controls.Add(txtNome);
-            Controls.Add(labelNome);
-            Controls.Add(lblTitulo);
+            Controls.Add(tabControl);
             Name = "FormPerfil";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Meu Perfil";
             Load += FormPerfil_Load;
+            tabControl.ResumeLayout(false);
+            tabPerfil.ResumeLayout(false);
+            tabPerfil.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
+        private TabControl tabControl;
+        private TabPage tabPerfil;
+        private TabPage tabDados;
         private Label lblTitulo;
         private Label labelNome;
         private TextBox txtNome;

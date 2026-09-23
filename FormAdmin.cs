@@ -154,6 +154,11 @@ namespace SistemaUsuarios
                 );
             }
         }
+
+        private void bntCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 
 }
