@@ -91,179 +91,295 @@ namespace SistemaUsuarios
 
         private void InitializeComponent()
         {
+            // Cores do sistema
+            Color corPrincipal = Color.FromArgb(30, 30, 46);
+            Color corHover = Color.FromArgb(50, 50, 72);
+            Color corTexto = Color.FromArgb(30, 30, 46);
+            Color corSecundaria = Color.FromArgb(120, 120, 130);
+            Color corFundo = Color.White;
+            Color corBorda = Color.FromArgb(220, 220, 230);
+
+            // Componentes
             tabControl = new TabControl();
             tabPerfil = new TabPage();
             tabDados = new TabPage();
+
+            panelMarca = new Panel();
+            lblMarca = new Label();
+            lblSlogan = new Label();
+
             lblTitulo = new Label();
             labelNome = new Label();
             txtNome = new TextBox();
+
             labelLogin = new Label();
             txtLogin = new TextBox();
+
             txtSenha = new TextBox();
             labelSenha = new Label();
+
             labelTipo = new Label();
             lblTipo = new Label();
+
             bntSalvar = new Button();
             bntCancelar = new Button();
+
             tabControl.SuspendLayout();
             tabPerfil.SuspendLayout();
+            panelMarca.SuspendLayout();
             SuspendLayout();
-            // 
+
+            //
+            // panelMarca - Painel lateral
+            //
+            panelMarca.BackColor = corPrincipal;
+            panelMarca.Dock = DockStyle.Left;
+            panelMarca.Name = "panelMarca";
+            panelMarca.Size = new Size(280, 650);
+            panelMarca.Controls.Add(lblMarca);
+            panelMarca.Controls.Add(lblSlogan);
+
+            //
+            // lblMarca
+            //
+            lblMarca.AutoSize = true;
+            lblMarca.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
+            lblMarca.ForeColor = Color.White;
+            lblMarca.Location = new Point(35, 250);
+            lblMarca.Name = "lblMarca";
+            lblMarca.Text = "SISTEMA";
+
+            //
+            // lblSlogan
+            //
+            lblSlogan.AutoSize = true;
+            lblSlogan.Font = new Font("Segoe UI", 10.5F);
+            lblSlogan.ForeColor = Color.FromArgb(180, 180, 200);
+            lblSlogan.Location = new Point(38, 305);
+            lblSlogan.Name = "lblSlogan";
+            lblSlogan.Text = "Gestão de usuários";
+
+            //
             // tabControl
-            // 
+            //
+            tabControl.Dock = DockStyle.Fill;
+            tabControl.Font = new Font("Segoe UI", 10F);
+            tabControl.Name = "tabControl";
+            tabControl.Padding = new Point(20, 8);
             tabControl.Controls.Add(tabPerfil);
             tabControl.Controls.Add(tabDados);
-            tabControl.Dock = DockStyle.Fill;
-            tabControl.Name = "tabControl";
-            tabControl.TabIndex = 0;
-            // 
+
+            //
             // tabPerfil
-            // 
-            tabPerfil.Controls.Add(bntCancelar);
-            tabPerfil.Controls.Add(bntSalvar);
-            tabPerfil.Controls.Add(lblTipo);
-            tabPerfil.Controls.Add(labelTipo);
+            //
+            tabPerfil.BackColor = corFundo;
+            tabPerfil.Controls.Add(lblTitulo);
+            tabPerfil.Controls.Add(labelNome);
+            tabPerfil.Controls.Add(txtNome);
+            tabPerfil.Controls.Add(labelLogin);
+            tabPerfil.Controls.Add(txtLogin);
             tabPerfil.Controls.Add(labelSenha);
             tabPerfil.Controls.Add(txtSenha);
-            tabPerfil.Controls.Add(txtLogin);
-            tabPerfil.Controls.Add(labelLogin);
-            tabPerfil.Controls.Add(txtNome);
-            tabPerfil.Controls.Add(labelNome);
-            tabPerfil.Controls.Add(lblTitulo);
+            tabPerfil.Controls.Add(labelTipo);
+            tabPerfil.Controls.Add(lblTipo);
+            tabPerfil.Controls.Add(bntSalvar);
+            tabPerfil.Controls.Add(bntCancelar);
             tabPerfil.Name = "tabPerfil";
             tabPerfil.Text = "Meu Perfil";
-            tabPerfil.UseVisualStyleBackColor = true;
-            // 
+            tabPerfil.UseVisualStyleBackColor = false;
+
+            //
             // tabDados
-            // 
+            //
+            tabDados.BackColor = corFundo;
             tabDados.Name = "tabDados";
             tabDados.Text = "Meus Dados";
-            tabDados.UseVisualStyleBackColor = true;
-            // 
+            tabDados.UseVisualStyleBackColor = false;
+
+            //
             // lblTitulo
-            // 
+            //
             lblTitulo.AutoSize = true;
-            lblTitulo.Location = new Point(607, 32);
+            lblTitulo.Font = new Font("Segoe UI", 22F, FontStyle.Bold);
+            lblTitulo.ForeColor = corTexto;
+            lblTitulo.Location = new Point(65, 35);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(75, 20);
-            lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Meu Perfil";
-            // 
+
+            //
             // labelNome
-            // 
+            //
             labelNome.AutoSize = true;
-            labelNome.Location = new Point(618, 88);
+            labelNome.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            labelNome.ForeColor = Color.FromArgb(90, 90, 100);
+            labelNome.Location = new Point(70, 115);
             labelNome.Name = "labelNome";
-            labelNome.Size = new Size(50, 20);
-            labelNome.TabIndex = 1;
-            labelNome.Text = "Nome";
-            // 
+            labelNome.Text = "NOME COMPLETO";
+
+            //
             // txtNome
-            // 
-            txtNome.Location = new Point(585, 140);
+            //
+            txtNome.BorderStyle = BorderStyle.FixedSingle;
+            txtNome.Font = new Font("Segoe UI", 11F);
+            txtNome.Location = new Point(70, 140);
             txtNome.Name = "txtNome";
-            txtNome.Size = new Size(125, 27);
-            txtNome.TabIndex = 2;
-            // 
+            txtNome.Size = new Size(430, 32);
+            txtNome.TabIndex = 0;
+
+            //
             // labelLogin
-            // 
+            //
             labelLogin.AutoSize = true;
-            labelLogin.Location = new Point(622, 206);
+            labelLogin.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            labelLogin.ForeColor = Color.FromArgb(90, 90, 100);
+            labelLogin.Location = new Point(70, 195);
             labelLogin.Name = "labelLogin";
-            labelLogin.Size = new Size(46, 20);
-            labelLogin.TabIndex = 3;
-            labelLogin.Text = "Login";
-            // 
+            labelLogin.Text = "LOGIN";
+
+            //
             // txtLogin
-            // 
-            txtLogin.Location = new Point(585, 261);
+            //
+            txtLogin.BorderStyle = BorderStyle.FixedSingle;
+            txtLogin.Font = new Font("Segoe UI", 11F);
+            txtLogin.Location = new Point(70, 220);
             txtLogin.Name = "txtLogin";
-            txtLogin.Size = new Size(125, 27);
-            txtLogin.TabIndex = 4;
-            // 
-            // txtSenha
-            // 
-            txtSenha.Location = new Point(585, 375);
-            txtSenha.Name = "txtSenha";
-            txtSenha.Size = new Size(125, 27);
-            txtSenha.TabIndex = 5;
-            txtSenha.UseSystemPasswordChar = true;
-            // 
+            txtLogin.Size = new Size(430, 32);
+            txtLogin.TabIndex = 1;
+
+            //
             // labelSenha
-            // 
+            //
             labelSenha.AutoSize = true;
-            labelSenha.Location = new Point(622, 320);
+            labelSenha.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            labelSenha.ForeColor = Color.FromArgb(90, 90, 100);
+            labelSenha.Location = new Point(70, 275);
             labelSenha.Name = "labelSenha";
-            labelSenha.Size = new Size(49, 20);
-            labelSenha.TabIndex = 6;
-            labelSenha.Text = "Senha";
-            // 
+            labelSenha.Text = "SENHA";
+
+            //
+            // txtSenha
+            //
+            txtSenha.BorderStyle = BorderStyle.FixedSingle;
+            txtSenha.Font = new Font("Segoe UI", 11F);
+            txtSenha.Location = new Point(70, 300);
+            txtSenha.Name = "txtSenha";
+            txtSenha.Size = new Size(430, 32);
+            txtSenha.TabIndex = 2;
+            txtSenha.UseSystemPasswordChar = true;
+
+            //
             // labelTipo
-            // 
+            //
             labelTipo.AutoSize = true;
-            labelTipo.Location = new Point(592, 448);
+            labelTipo.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            labelTipo.ForeColor = Color.FromArgb(90, 90, 100);
+            labelTipo.Location = new Point(70, 360);
             labelTipo.Name = "labelTipo";
-            labelTipo.Size = new Size(118, 20);
-            labelTipo.TabIndex = 7;
-            labelTipo.Text = "Tipo de Usuário";
-            // 
+            labelTipo.Text = "TIPO DE USUÁRIO";
+
+            //
             // lblTipo
-            // 
+            //
             lblTipo.AutoSize = true;
-            lblTipo.Location = new Point(644, 493);
+            lblTipo.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblTipo.ForeColor = corPrincipal;
+            lblTipo.Location = new Point(70, 385);
             lblTipo.Name = "lblTipo";
-            lblTipo.Size = new Size(0, 20);
-            lblTipo.TabIndex = 8;
-            // 
+            lblTipo.Text = "";
+
+            //
             // bntSalvar
-            // 
-            bntSalvar.Location = new Point(498, 548);
+            //
+            bntSalvar.BackColor = corPrincipal;
+            bntSalvar.Cursor = Cursors.Hand;
+            bntSalvar.FlatStyle = FlatStyle.Flat;
+            bntSalvar.FlatAppearance.BorderSize = 0;
+            bntSalvar.FlatAppearance.MouseOverBackColor = corHover;
+            bntSalvar.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            bntSalvar.ForeColor = Color.White;
+            bntSalvar.Location = new Point(70, 455);
             bntSalvar.Name = "bntSalvar";
-            bntSalvar.Size = new Size(94, 29);
-            bntSalvar.TabIndex = 9;
-            bntSalvar.Text = "Salvar";
-            bntSalvar.UseVisualStyleBackColor = true;
+            bntSalvar.Size = new Size(205, 45);
+            bntSalvar.TabIndex = 3;
+            bntSalvar.Text = "Salvar alterações";
+            bntSalvar.UseVisualStyleBackColor = false;
             bntSalvar.Click += bntSalvar_Click;
-            // 
+
+            //
             // bntCancelar
-            // 
-            bntCancelar.Location = new Point(690, 548);
+            //
+            bntCancelar.BackColor = Color.FromArgb(235, 235, 242);
+            bntCancelar.Cursor = Cursors.Hand;
+            bntCancelar.FlatStyle = FlatStyle.Flat;
+            bntCancelar.FlatAppearance.BorderSize = 0;
+            bntCancelar.FlatAppearance.MouseOverBackColor =
+                Color.FromArgb(215, 215, 225);
+            bntCancelar.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            bntCancelar.ForeColor = corPrincipal;
+            bntCancelar.Location = new Point(295, 455);
             bntCancelar.Name = "bntCancelar";
-            bntCancelar.Size = new Size(94, 29);
-            bntCancelar.TabIndex = 10;
+            bntCancelar.Size = new Size(205, 45);
+            bntCancelar.TabIndex = 4;
             bntCancelar.Text = "Cancelar";
-            bntCancelar.UseVisualStyleBackColor = true;
+            bntCancelar.UseVisualStyleBackColor = false;
             bntCancelar.Click += bntCancelar_Click;
-            // 
+
+            //
             // FormPerfil
-            // 
-            ClientSize = new Size(1373, 648);
+            //
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = corFundo;
+            ClientSize = new Size(1050, 650);
+
+            // Adiciona primeiro o conteúdo e depois o painel lateral
             Controls.Add(tabControl);
+            Controls.Add(panelMarca);
+
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = true;
             Name = "FormPerfil";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Meu Perfil";
+            Text = "Meu Perfil - Sistema de Usuários";
+
             Load += FormPerfil_Load;
+
+            panelMarca.ResumeLayout(false);
+            panelMarca.PerformLayout();
+
             tabControl.ResumeLayout(false);
             tabPerfil.ResumeLayout(false);
             tabPerfil.PerformLayout();
+
             ResumeLayout(false);
         }
+
+        private Panel panelMarca;
+        private Label lblMarca;
+        private Label lblSlogan;
 
         private TabControl tabControl;
         private TabPage tabPerfil;
         private TabPage tabDados;
+
         private Label lblTitulo;
         private Label labelNome;
         private TextBox txtNome;
+
         private Label labelLogin;
         private TextBox txtLogin;
+
         private TextBox txtSenha;
         private Label labelSenha;
+
         private Label labelTipo;
         private Label lblTipo;
+
         private Button bntSalvar;
         private Button bntCancelar;
-        #endregion
 
+        #endregion
     }
 }
+
